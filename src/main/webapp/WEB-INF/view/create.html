@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VOTER</title>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #D4CDC7;
+            color: white;
+        }
+
+        nav {
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 35px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: .2em 2em;
+            float: right;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 0;
+            padding: .2em .7em;
+        }
+
+        nav a {
+            width: 100%;
+            height: 100%;
+            color: white;
+            text-decoration: none;
+            font-family: Ubuntu;
+            font-size: 1.15em;
+            font-weight: lighter;
+            letter-spacing: 1px;
+            transition: .25s ease-in-out;
+        }
+
+        nav a:hover {
+            color: #D4CDC7;
+        }
+
+        .nav-bg {
+            content: '';
+            position: absolute;
+            display: block;
+            top: -100%;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: rgb(50, 50, 50);
+            transition: .45s ease-in-out;
+        }
+
+        .bg-hidden {
+            top: -100%;
+            opacity: 0;
+        }
+
+        .bg-visible {
+            top: 0;
+            opacity: 1;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: Ubuntu;
+            letter-spacing: 1px;
+        }
+
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: rgb(50, 50, 50);
+            background: url(https://images.wallpaperscraft.ru/image/oblaka_poristyj_nebo_129724_3415x3415.jpg) no-repeat 50% 50% fixed;
+            background-size: 130%;
+            overflow: hidden;
+        }
+
+        .hero a {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: white;
+            text-decoration: none;
+            font-family: Ubuntu;
+            padding: .3em;
+            font-size: 3em;
+            font-weight: lighter;
+            letter-spacing: 1px;
+            transition: .25s ease-in-out;
+        }
+        .hero a:hover {
+            color: #D4CDC7;
+        }
+
+        .content-wrapper {
+            width: 80%;
+            height: 3000px;
+            padding: 1em 10%;
+        }
+
+        .content-wrapper h1 {
+            margin: 0;
+            color: white;
+        }
+
+        .content-wrapper p {
+            font-family: "Open Sans";
+            text-indent: 1.5em;
+        }
+        .form-inner {
+            margin: auto auto 20px;
+            width: 30%;
+            padding: 10px;
+            border: 3px solid #E9E2DC;
+            background: #DCD5CF;
+            border-radius: 30px;
+        }
+        .form-inner input, .form-inner textarea {
+            outline:none;
+            display: block;
+            width: 60%;
+            padding: 0 20px;
+            margin-bottom: 10px;
+            background: #E9EFF6;
+            line-height: 40px;
+            border-width: 0;
+            border-radius: 20px;
+            font-family: 'Roboto', sans-serif;
+        }
+        .form-inner input[type="submit"] {
+            margin-top: 30px;
+            background: #D4CDC7;
+            border-bottom: 4px solid #A8A19B;
+            color: white;
+            font-size: 14px;
+        }
+        .form-inner textarea {
+            resize: none;
+        }
+        .form-inner h3 {
+            margin-top: 0;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            font-size: 24px;
+            color: #707981;
+        }
+        label{
+            font-size: 20px;
+        }
+    </style>
+
+</head>
+<body>
+<nav>
+    <div class="nav-bg"></div>
+    <ul>
+        <li><a href="/logout">Log Out</a></li>
+        <li><a href="/login">Log in</a></li>
+        <li><a href="/registration">Registration</a></li>
+        <li><a href="/change_password">Change profile</a></li>
+        <li><a href="/question">Questions</a></li>
+        <li><a href="/question/create">Create Questions</a></li>
+        <li><a href="/profile">My Profile</a></li>
+        <li><a href="/change_role">Change role</a></li>
+        <li><a href="/question/fullStatistic">Full statistic</a></li>
+    </ul>
+</nav>
+<div class="hero">
+    <a href="/home">VOTER</a>
+</div>
+<div class="content-wrapper">
+    <form action="/question/create" method="post">
+        <div class="form-inner">
+            <div><label>Your Question<input type="text" name="question"/> </label><br><br></div>
+            <div><label>First answer<input type="text" name="answer"/> </label><br><br></div>
+            <div><label>Second answer<input type="text" name="answer1"/> </label><br><br></div>
+            <div><label>Third answer<input type="text" name="answer2"/> </label><br><br></div>
+            <div><input type="submit" value="Create"/></div>
+        </div>
+    </form>
+</div>
+
+</body>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+<script>$(document).ready(function() {
+    $(window).on('scroll', function() {
+        if($(window).scrollTop() < 1000) {
+            $('.hero').css('background-size', 130 + parseInt($(window).scrollTop() / 5) + '%');
+            $('.hero h1').css('top', 50 + ($(window).scrollTop() * .1) + '%');
+            $('.hero h1').css('opacity', 1 - ($(window).scrollTop() * .003));
+        }
+
+        if($(window).scrollTop() >= $('.content-wrapper').offset().top - 300) {
+            $('.nav-bg').removeClass('bg-hidden');
+            $('.nav-bg').addClass('bg-visible');
+        } else {
+            $('.nav-bg').removeClass('bg-visible');
+            $('.nav-bg').addClass('bg-hidden');
+        }
+    });
+});</script>
+<script src="js/index.js"></script>
+</html>
